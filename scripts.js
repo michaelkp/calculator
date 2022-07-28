@@ -12,7 +12,6 @@ let keys = window.addEventListener('keydown', (e) => {
     if(e.defaultPrevented) {
         return;
     }
-    //console.log(e)
     switch (e.key) {
         //addition buttons
         case '+': 
@@ -65,7 +64,7 @@ let keys = window.addEventListener('keydown', (e) => {
             console.log('nope')
     }
 });
-function operate(a, b) {
+function operate(keys) {
     //let  + = add(a, b);
 }
 operate();
