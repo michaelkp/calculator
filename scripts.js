@@ -1,5 +1,5 @@
 const add = (a, b) => a + b;
-    add();
+    //add();
 const subtract = (a, b) => a - b;
     subtract();
 const multiply = (a, b) => a * b;
@@ -8,14 +8,14 @@ const divide = (a, b) => a / b;
     divide();
 
 //get operand on key press
-let keys = window.addEventListener('keydown', (e) => {
+const operate = window.addEventListener('keydown', (e) => {
     if(e.defaultPrevented) {
         return;
     }
     switch (e.key) {
         //addition buttons
         case '+': 
-        console.log('test');
+        console.log(add() + ' --test');
             add();
             break;
         case 'ShiftLeft Equal':
@@ -45,7 +45,7 @@ let keys = window.addEventListener('keydown', (e) => {
             break;
         //divide buttons
         case '/': 
-        console.log('test /');
+        console.log(divide(99, 11) + ' --test');
             divide();
             break;
         case 'Slash':
@@ -64,7 +64,3 @@ let keys = window.addEventListener('keydown', (e) => {
             console.log('nope')
     }
 });
-function operate(keys) {
-    //let  + = add(a, b);
-}
-operate();
