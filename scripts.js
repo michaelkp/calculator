@@ -12,12 +12,17 @@ const operands = document.getElementsByClassName('operand')
             operate(operands.id, 1223, 123);
         })
     })
-
+const output =  document.getElementById('output');
+let firstNum = [];
 const numbers = document.getElementsByClassName('number');
     Array.from(numbers).map(numbers => {
         numbers.addEventListener('click', () => {
             //operate(numbers.id);
-            console.log(numbers.value + ' --numbers test')
+            //console.log(numbers.value + ' --numbers test')
+            firstNum
+                .push(numbers.value)
+                ;
+            output.textContent = `${firstNum.join('')}`;
         })
     })
 
