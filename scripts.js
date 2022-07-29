@@ -8,28 +8,32 @@ const divide = (a, b) => a / b;
 
 const operands = document.getElementsByClassName('operand') 
       Array.from(operands).map(operands => {
-        console.log(operands.id)
         operands.addEventListener('click', () => {
             operate(operands.id, 1223, 123);
         })
-        return operands.id;
+    })
+
+const numbers = document.getElementsByClassName('number');
+    Array.from(numbers).map(numbers => {
+        numbers.addEventListener('click', () => {
+            //operate(numbers.id);
+            console.log(numbers.value + ' --numbers test')
+        })
     })
 
 function operate(operands, ...args) {
     
     if(operands === 'plus') {
-        console.log(operands + '--id test')
-
-        console.log(add(...args))
+        console.log(operands +  ' ' + add(...args))
     }
     if(operands=== 'minus') {
-        console.log(operands + subtract(...args))
+        console.log(operands + ' ' + subtract(...args))
     }
     if(operands=== 'multiply') {
-        console.log(operands + multiply(...args))
+        console.log(operands +  ' ' + multiply(...args))
     }
     if(operands === 'divide') {
-        console.log(operands + divide(...args))
+        console.log(operands +  ' ' + divide(...args))
     }
 }
 
