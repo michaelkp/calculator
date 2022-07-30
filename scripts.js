@@ -1,4 +1,4 @@
-const add = (firstNum, b) => firstNum + 100;
+const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
     subtract();
 const multiply = (a, b) => a * b;
@@ -9,29 +9,35 @@ const divide = (a, b) => a / b;
 const operands = document.getElementsByClassName('operand') 
       Array.from(operands).map(operands => {
         operands.addEventListener('click', () => {
-            operate(operands.id, 1223, 123);
+            operate(operands.id, userValue, 123);
         })
     })
 
 
 let firstNum = [];
 let secondNum = [];
-
+let userValue;
+let value;
 
 const output =  document.getElementById('output');
 const numbers = document.getElementsByClassName('number');
     Array.from(numbers).map(numbers => {
         numbers.addEventListener('click', () => {
             firstNum.push(numbers.value);
-            
+            value = firstNum.join('');
+            userValue = Number.parseFloat(value);
+            console.log(typeof userValue)
+            console.log(userValue + ' userValue numbers')
             output.textContent = `${firstNum.join('')}`;
+            return userValue;
         })
     })
 
 function operate(operands, ...args) {
     
     if(operands === 'plus') {
-        console.log(operands +  ' ' + add())
+        console.log(userValue + ' --uservalue test')
+        console.log(operands +  ' ' + add(...args))
     }
     if(operands=== 'minus') {
         console.log(operands + ' ' + subtract(...args))
@@ -44,7 +50,6 @@ function operate(operands, ...args) {
     }
     if(operands === 'clear') {
         firstNum = [];
-        console.log(firstNum + '--test')
         output.textContent = `test: `;
     }
 }
