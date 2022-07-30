@@ -1,4 +1,4 @@
-const add = (a, b) => a + b;
+const add = (firstNum, b) => firstNum + 100;
 const subtract = (a, b) => a - b;
     subtract();
 const multiply = (a, b) => a * b;
@@ -12,16 +12,18 @@ const operands = document.getElementsByClassName('operand')
             operate(operands.id, 1223, 123);
         })
     })
-const output =  document.getElementById('output');
+
+
 let firstNum = [];
+let secondNum = [];
+
+
+const output =  document.getElementById('output');
 const numbers = document.getElementsByClassName('number');
     Array.from(numbers).map(numbers => {
         numbers.addEventListener('click', () => {
-            //operate(numbers.id);
-            //console.log(numbers.value + ' --numbers test')
-            firstNum
-                .push(numbers.value)
-                ;
+            firstNum.push(numbers.value);
+            
             output.textContent = `${firstNum.join('')}`;
         })
     })
@@ -29,7 +31,7 @@ const numbers = document.getElementsByClassName('number');
 function operate(operands, ...args) {
     
     if(operands === 'plus') {
-        console.log(operands +  ' ' + add(...args))
+        console.log(operands +  ' ' + add())
     }
     if(operands=== 'minus') {
         console.log(operands + ' ' + subtract(...args))
@@ -39,6 +41,11 @@ function operate(operands, ...args) {
     }
     if(operands === 'divide') {
         console.log(operands +  ' ' + divide(...args))
+    }
+    if(operands === 'clear') {
+        firstNum = [];
+        console.log(firstNum + '--test')
+        output.textContent = `test: `;
     }
 }
 
