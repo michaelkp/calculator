@@ -45,17 +45,25 @@ const divide = document.getElementById('divide');
         output.textContent = `${userValueA} ${sign} `;
 
     })
-
+let clicked = document.getElementsByClassName('clicked');
 const equals = document.getElementById('equals');
     equals.addEventListener('click', () => {
-        let clicked = document.getElementsByClassName('clicked');
+        
         Array.from(clicked).map(clicked => {
             clicked.classList.remove('clicked');
             operate(clicked.id, userValueA);
             
         })
     })
+const clear = document.getElementById('clear');
+clear.classList.add('clicked');
 
+    clear.addEventListener('click', () => {
+        Array.from(clicked).map(clicked => {
+           // clicked.classList.remove('clicked');
+            operate(clicked.id, userValueA);
+        })
+    })
 
 let firstNum = [];
 let secondNum = [];
@@ -114,7 +122,9 @@ console.log(operand)
 
 
 function operate(clicked, ...args) {
-    
+    console.log(clicked)
+    console.log(clicked.id)
+
     if(clicked === 'plus') {
         console.log(userValueA + ' --uservalue test')
         console.log(clicked +  ' ' + add(userValueA, userValueB))
@@ -129,8 +139,10 @@ function operate(clicked, ...args) {
         console.log(clicked +  ' ' + division(userValueA, ...args))
     }
     if(clicked === 'clear') {
+        console.log('clear test')
         firstNum = [];
-        output.textContent = `test: `;
+        secondNum = [];
+        output.textContent = `0`;
     }
 }
 
