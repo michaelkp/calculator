@@ -1,15 +1,43 @@
 const add = (a, b) => a + b;
 const subtract = (a, b) => a - b;
-    subtract();
-const multiply = (a, b) => a * b;
-    multiply();
-const divide = (a, b) => a / b;
-    divide();
+    //subtract();
+const multiplication = (a, b) => a * b;
+   // multiply();
+const division = (a, b) => a / b;
+    //divide();
+let operandId;
+let operand;
 
-const operands = document.getElementsByClassName('operand') 
-      Array.from(operands).map(operands => {
-        operands.addEventListener('click', () => {
-            operate(operands.id, userValue, 123);
+const plus = document.getElementById('plus');
+    plus.addEventListener('click', () => {
+        console.log('plus test')
+        plus.classList.add('clicked');
+
+    })
+const minus = document.getElementById('minus');
+    minus.addEventListener('click', () => {
+        console.log('minus test')
+        minus.classList.add('clicked');
+    })
+const multiply = document.getElementById('multiply');
+    multiply.addEventListener('click', () => {
+        console.log('multiply test')
+        multiply.classList.add('clicked');
+
+    })
+const divide = document.getElementById('divide');
+    divide.addEventListener('click', () => {
+        console.log('divide test')
+        divide.classList.add('clicked');
+
+    })
+
+const enter = document.getElementById('enter');
+    enter.addEventListener('click', () => {
+        let clicked = document.getElementsByClassName('clicked');
+        Array.from(clicked).map(clicked => {
+            clicked.classList.remove('clicked');
+            operate(clicked.id, userValue);
         })
     })
 
@@ -33,22 +61,22 @@ const numbers = document.getElementsByClassName('number');
         })
     })
 
-function operate(operands, ...args) {
+function operate(clicked, ...args) {
     
-    if(operands === 'plus') {
+    if(clicked === 'plus') {
         console.log(userValue + ' --uservalue test')
-        console.log(operands +  ' ' + add(...args))
+        console.log(clicked +  ' ' + add(userValue, ...args))
     }
-    if(operands=== 'minus') {
-        console.log(operands + ' ' + subtract(...args))
+    if(clicked=== 'minus') {
+        console.log(clicked + ' ' + subtract(userValue, ...args))
     }
-    if(operands=== 'multiply') {
-        console.log(operands +  ' ' + multiply(...args))
+    if(clicked=== 'multiply') {
+        console.log(clicked +  ' ' + multiplication(userValue, ...args))
     }
-    if(operands === 'divide') {
-        console.log(operands +  ' ' + divide(...args))
+    if(clicked === 'divide') {
+        console.log(clicked +  ' ' + division(userValue, ...args))
     }
-    if(operands === 'clear') {
+    if(clicked === 'clear') {
         firstNum = [];
         output.textContent = `test: `;
     }
