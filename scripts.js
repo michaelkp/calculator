@@ -143,6 +143,7 @@ function operate(clicked, ...args) {
         firstNum = [];
         secondNum = [];
         output.textContent = `0`;
+        getUserValueA(numbers, operand);
     }
 }
 
