@@ -1,151 +1,56 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-    //subtract();
-const multiplication = (a, b) => a * b;
-   // multiply();
-const division = (a, b) => a / b;
-    //divide();
-let operand;
-
-let sign;
-
-const plus = document.getElementById('plus');
-    plus.addEventListener('click', () => {
-        console.log('plus test')
-        plus.classList.add('clicked');
-        sign = ` + `;
-        operand = plus.id;
-        output.textContent = `${userValueA} ${sign} `;
-        getUserValueB();
-        
-    })
-    
-const minus = document.getElementById('minus');
-    minus.addEventListener('click', () => {
-        console.log('minus test')
-        minus.classList.add('clicked');
-        sign = ` - `;
-        operand = minus.id;
-        console.log(operand)
-        output.textContent = `${userValueA} ${sign} `;
-    })
-const multiply = document.getElementById('multiply');
-    multiply.addEventListener('click', () => {
-        console.log('multiply test')
-        sign = ` * `;
-        multiply.classList.add('clicked');
-        output.textContent = `${userValueA} ${sign} `;
-
-    })
-const divide = document.getElementById('divide');
-    divide.addEventListener('click', () => {
-        console.log('divide test')
-        sign = ` / `;
-        divide.classList.add('clicked');
-        output.textContent = `${userValueA} ${sign} `;
-
-    })
-let clicked = document.getElementsByClassName('clicked');
-const equals = document.getElementById('equals');
-    equals.addEventListener('click', () => {
-        
-        Array.from(clicked).map(clicked => {
-            clicked.classList.remove('clicked');
-            operate(clicked.id, userValueA);
-            
-        })
-    })
-const clear = document.getElementById('clear');
-clear.classList.add('clicked');
-
-    clear.addEventListener('click', () => {
-        Array.from(clicked).map(clicked => {
-           // clicked.classList.remove('clicked');
-            operate(clicked.id, userValueA);
-        })
-    })
-
-let firstNum = [];
-let secondNum = [];
-let userValueA;
-let userValueB;
-let value;
-let valueB;
-
-const output =  document.getElementById('output');
-
-
-            
-let operator = document.getElementsByClassName('operand')
-function numbers(operand) {
-    const num = document.getElementsByClassName('number');
-        Array.from(num).map(num => {
-            num.addEventListener('click', () => {
-                 num.classList.add('first'); 
-                 getUserValueA(num, operand)  
-                 if (num.classList.contains('second')) {
-                    getUserValueB(numbers)
-                 }
-                 
-            })
-        })
-}
-numbers();
-function getUserValueB() {
-    let num = document.getElementsByClassName('number');
-    Array.from(num).map(num => {
-        num.addEventListener('click', () => {
-            console.log(num.value + '--num value')
-        secondNum.push(num.value);
-        valueB = secondNum.join('');
-        userValueB = Number.parseFloat(valueB);
-        output.textContent = `${userValueA} ${sign} ${userValueB}`;
-        })
-    })
-    
-}
-function getUserValueA(numbers, operand) {
-console.log(operand)
-    
-        console.log(numbers.value + ' --uservalueA')
-
-        firstNum.push(numbers.value);
-        value = firstNum.join('');
-        userValueA = Number.parseFloat(value);
-        output.textContent = `${userValueA}`;
-    
-    
+function add(a, b) {
+    return a + b;
 }
 
+function subtract(a, b) {
+    return a - b;
+}
 
+function multiplication(a, b) {
+    return a * b;
+}
 
+function division(a, b ) {
+    return a / b;
+}
 
-
-function operate(clicked, ...args) {
-    console.log(clicked)
-    console.log(clicked.id)
-
-    if(clicked === 'plus') {
-        console.log(userValueA + ' --uservalue test')
-        console.log(clicked +  ' ' + add(userValueA, userValueB))
+function operate(operand) {
+    if(plus) {
+        add();
     }
-    if(clicked=== 'minus') {
-        console.log(clicked + ' ' + subtract(userValueA, ...args))
+    if(minus) {
+        subtract();
     }
-    if(clicked=== 'multiply') {
-        console.log(clicked +  ' ' + multiplication(userValueA, ...args))
+    if(multiply) {
+        multiplication();
     }
-    if(clicked === 'divide') {
-        console.log(clicked +  ' ' + division(userValueA, ...args))
-    }
-    if(clicked === 'clear') {
-        console.log('clear test')
-        firstNum = [];
-        secondNum = [];
-        output.textContent = `0`;
-        getUserValueA(numbers, operand);
+    if(divide) {
+        division();
     }
 }
+operate(2,3)
+
+const numbers = document.getElementsByClassName('number');
+const value = [];
+
+for(let num of numbers) {
+        num.addEventListener('click', () => { 
+            value.push(num.value);
+            getValue(num)
+        })
+    }
+
+function getValue(num) {
+    let x = value.join('');
+    let y = Number.parseFloat(x);
+    display(y)
+}
+
+function display(value) {
+    const output = document.getElementById('display');
+    output.textContent = `${value}`;
+}
+
 
 
 
