@@ -28,31 +28,86 @@ function operate(operand) {
         division();
     }
 }
-operate(2,3)
+
 
 const numbers = document.getElementsByClassName('number');
 const value = [];
+const nextValue = [];
 
-for(let num of numbers) {
+function getNumberValues(number) {
+    for(let num of numbers) {
         num.addEventListener('click', () => { 
-            value.push(num.value);
-            getValue(num)
+            if(operandClicked === true) {
+                nextValue.push(num.value);
+                getNewValue(num)
+            } else {
+                value.push(num.value);
+                getValue(num)
+            }
         })
     }
+}
+getNumberValues();
 
-function getValue(num) {
-    let x = value.join('');
-    let y = Number.parseFloat(x);
+function getValue(num,a, b) {
+    if(operandClicked === true) {
+        getNewValue();
+    } else {
+        console.log(num + '--num  value ')
+
+        a = value.join('');
+        b = Number.parseFloat(a);
+        display(b)
+    }  
+}
+
+function getNewValue(num, x, y) {
+    x = nextValue.join('');
+    y = Number.parseFloat(x);
     display(y)
+    console.log(num + '--num new value ')
+
+    console.log(nextValue + '--new value ')
+
+    console.log(y + '--new value ')
 }
+const output = document.getElementById('display');
 
-function display(value) {
-    const output = document.getElementById('display');
-    output.textContent = `${value}`;
+function display(num) {
+    output.textContent = `${num}`;
+    //console.log(value)
+    getOperand(value)
+
+    return value;
 }
+let operandClicked = false;
 
+const numbersToCalculate = [];
+//make sign function then add to display text content
 
-
+function getOperand(value) {
+    console.log(value + '--test')
+    const operand = document.getElementsByClassName('operand');
+    for(const sign of operand) {
+        sign.addEventListener('click', () => {
+            console.log( operandClicked + 'operandClicked before test')
+            if(operandClicked === true) {
+                value = [];
+                console.log( operandClicked + 'operandClicked sfter test')
+                console.log(value + ' true test')
+        } else {
+            console.log(sign.id)
+            console.log(value + '--getOperand test')
+            operandClicked = true;
+            output.textContent = 0;
+            
+            console.log(operandClicked)
+        }
+           
+        })
+    }
+    
+}
 
 /* come back to this later for extra credit!!!!
 //get operand on key press
