@@ -13,26 +13,57 @@ function multiplication(a, b) {
 function division(a, b ) {
     return a / b;
 }
-
-function operate(operand) {
-    if(plus) {
-        add();
+let symbol;
+function operate(sign) {
+    if(sign === 'plus') {
+        const addValue = add(firstValue, secondValue);
+        output.textContent = `${addValue}`;
     }
-    if(minus) {
-        subtract();
+    if(sign === 'minus') {
+        const minusValue = subtract(firstValue, secondValue);
+        output.textContent = `${minusValue}`;
     }
-    if(multiply) {
-        multiplication();
+    if(sign === 'multiply') {
+        const multiplyValue = multiplication(firstValue, secondValue);
+        output.textContent = `${multiplyValue}`;
     }
-    if(divide) {
-        division();
+    if(sign === 'divide') {
+        const divisionValue = division(firstValue, secondValue);
+        output.textContent = `${divisionValue}`;
     }
 }
 
+let sign;
 
+const plus = document.getElementById('plus');
+    plus.addEventListener('click', () => {
+        console.log('plus test')
+        sign = plus.id;
+        symbol = `+`;
+    })
+const minus = document.getElementById('minus');
+    minus.addEventListener('click', () => {
+        console.log('plus test')
+        sign = minus.id;
+        symbol = `-`;
+    })
+const multiply = document.getElementById('multiply');
+    multiply.addEventListener('click', () => {
+        console.log('plus test')
+        sign = multiply.id;
+        symbol = `*`;
+    })
+const divide = document.getElementById('divide');
+    divide.addEventListener('click', () => {
+        console.log('plus test')
+        sign = divide.id;
+        symbol = `/`;
+    })
 const numbers = document.getElementsByClassName('number');
 const value = [];
 const nextValue = [];
+let firstValue;
+let secondValue;
 
 function getNumberValues(number) {
     for(let num of numbers) {
@@ -53,61 +84,46 @@ function getValue(num,a, b) {
     if(operandClicked === true) {
         getNewValue();
     } else {
-        console.log(num + '--num  value ')
-
         a = value.join('');
         b = Number.parseFloat(a);
-        display(b)
+        firstValue = b;
+        display(b);
     }  
 }
 
 function getNewValue(num, x, y) {
     x = nextValue.join('');
     y = Number.parseFloat(x);
-    display(y)
-    console.log(num + '--num new value ')
-
-    console.log(nextValue + '--new value ')
-
-    console.log(y + '--new value ')
+    secondValue = y;
+    output.textContent = `${symbol} ${secondValue}`
 }
+
 const output = document.getElementById('display');
 
-function display(num) {
-    output.textContent = `${num}`;
-    //console.log(value)
+function display() {
+    output.textContent = `${firstValue}`;
     getOperand(value)
-
-    return value;
 }
 let operandClicked = false;
-
-const numbersToCalculate = [];
-//make sign function then add to display text content
 
 function getOperand(value) {
     console.log(value + '--test')
     const operand = document.getElementsByClassName('operand');
-    for(const sign of operand) {
-        sign.addEventListener('click', () => {
-            console.log( operandClicked + 'operandClicked before test')
+    for(const button of operand) {
+        button.addEventListener('click', () => {
             if(operandClicked === true) {
                 value = [];
-                console.log( operandClicked + 'operandClicked sfter test')
-                console.log(value + ' true test')
-        } else {
-            console.log(sign.id)
-            console.log(value + '--getOperand test')
-            operandClicked = true;
-            output.textContent = 0;
-            
-            console.log(operandClicked)
-        }
-           
+            } else {
+                operandClicked = true;
+                output.textContent = `${symbol}`;
+            }
+            if(button.id === 'equals') {
+                operate(sign);
+            }        
         })
-    }
-    
+    }  
 }
+
 
 /* come back to this later for extra credit!!!!
 //get operand on key press
