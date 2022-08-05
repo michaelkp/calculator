@@ -13,27 +13,28 @@ function multiplication(a, b) {
 function division(a, b ) {
     return a / b;
 }
+
 let symbol;
+let sign;
+
 function operate(sign) {
     if(sign === 'plus') {
         const addValue = add(firstValue, secondValue);
-        output.textContent = `${addValue}`;
+        output.textContent = `= ${addValue}`;
     }
     if(sign === 'minus') {
         const minusValue = subtract(firstValue, secondValue);
-        output.textContent = `${minusValue}`;
+        output.textContent = `= ${minusValue}`;
     }
     if(sign === 'multiply') {
         const multiplyValue = multiplication(firstValue, secondValue);
-        output.textContent = `${multiplyValue}`;
+        output.textContent = `= ${multiplyValue}`;
     }
     if(sign === 'divide') {
         const divisionValue = division(firstValue, secondValue);
-        output.textContent = `${divisionValue}`;
+        output.textContent = `= ${divisionValue}`;
     }
 }
-
-let sign;
 
 const plus = document.getElementById('plus');
     plus.addEventListener('click', () => {
@@ -59,9 +60,19 @@ const divide = document.getElementById('divide');
         sign = divide.id;
         symbol = `/`;
     })
+const clear = document.getElementById('clear');
+    clear.addEventListener('click', () => {
+        firstValue = '';
+        secondValue = '';
+        output.textContent = 0;
+    })
+const dot = document.getElementById('dot')
 const numbers = document.getElementsByClassName('number');
-const value = [];
-const nextValue = [];
+    dot.addEventListener('click', () => {
+        output.textContent = `.`;
+    })
+let value = [];
+let nextValue = [];
 let firstValue;
 let secondValue;
 
@@ -81,14 +92,10 @@ function getNumberValues(number) {
 getNumberValues();
 
 function getValue(num,a, b) {
-    if(operandClicked === true) {
-        getNewValue();
-    } else {
         a = value.join('');
         b = Number.parseFloat(a);
         firstValue = b;
         display(b);
-    }  
 }
 
 function getNewValue(num, x, y) {
@@ -119,11 +126,19 @@ function getOperand(value) {
             }
             if(button.id === 'equals') {
                 operate(sign);
-            }        
+            }   
+            if(button.id === 'clear') {
+                value = [];
+                nextValue = [];
+                output.textContent = 0;
+                //operandClicked = false;
+                getNumberValues();
+                console.log(value + ' -- clear test')
+
+            }     
         })
     }  
 }
-
 
 /* come back to this later for extra credit!!!!
 //get operand on key press
