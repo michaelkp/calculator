@@ -62,12 +62,22 @@ const divide = document.getElementById('divide');
     })
 const clear = document.getElementById('clear');
     clear.addEventListener('click', () => {
-        firstValue = '';
-        secondValue = '';
+        value.length = 0;
+        console.log(value + '--clear value operand tesst')
+
+        nextValue.length = 0;
+        console.log(nextValue + '--clear next value operand tesst')
+
+        console.log(operandClicked + '--clear operandCLicked tesst')
+        sign = '';
+        symbol = '';
+        //operandClicked = false;
+        console.log(sign + '--clear sign operand tesst')
         output.textContent = 0;
     })
+
+const numbers = document.getElementsByClassName('number');   
 const dot = document.getElementById('dot')
-const numbers = document.getElementsByClassName('number');
     dot.addEventListener('click', () => {
         output.textContent = `.`;
     })
@@ -76,7 +86,7 @@ let nextValue = [];
 let firstValue;
 let secondValue;
 
-function getNumberValues(number) {
+function getNumberValues() {
     for(let num of numbers) {
         num.addEventListener('click', () => { 
             if(operandClicked === true) {
@@ -85,6 +95,7 @@ function getNumberValues(number) {
             } else {
                 value.push(num.value);
                 getValue(num)
+                console.log('clear getNumberValues test')
             }
         })
     }
@@ -95,7 +106,10 @@ function getValue(num,a, b) {
         a = value.join('');
         b = Number.parseFloat(a);
         firstValue = b;
-        display(b);
+        display(firstValue);
+        //return firstValue;
+        console.log(getValue + ' --clear getValues test')
+
 }
 
 function getNewValue(num, x, y) {
@@ -106,9 +120,12 @@ function getNewValue(num, x, y) {
 }
 
 const output = document.getElementById('display');
+let displayValue = '';
 
-function display() {
-    output.textContent = `${firstValue}`;
+function display(firstValue) {
+    displayValue = firstValue;
+    output.textContent = `${displayValue}`;
+    console.log('--clear display test')
     getOperand(value)
 }
 let operandClicked = false;
@@ -126,16 +143,7 @@ function getOperand(value) {
             }
             if(button.id === 'equals') {
                 operate(sign);
-            }   
-            if(button.id === 'clear') {
-                value = [];
-                nextValue = [];
-                output.textContent = 0;
-                //operandClicked = false;
-                getNumberValues();
-                console.log(value + ' -- clear test')
-
-            }     
+            }  
         })
     }  
 }
