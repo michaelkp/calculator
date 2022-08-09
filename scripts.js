@@ -16,11 +16,39 @@ function division(a, b ) {
 
 let symbol;
 let sign;
-
+let displayValue; 
 function operate(sign) {
     if(sign === 'plus') {
-        const addValue = add(firstValue, secondValue);
-        output.textContent = `= ${addValue}`;
+        if(calculated === true){
+            console.log(displayValue + '--if calculated')
+            console.log(secondValue  + '--secondvalue calculated')
+
+            addValue = add(displayValue, secondValue)
+            secondValue = [];
+            //nextValue.length = 0;
+            console.log(calculated)
+            console.log(addValue)
+            displayValue = addValue;
+
+            console.log(secondValue  + '--secondvalue calculated')
+
+            console.log(displayValue + '--if calculated')
+
+            output.textContent = `${displayValue}`
+            
+        } else {
+            const addValue = add(firstValue, secondValue);
+            output.textContent = `= ${addValue}`;
+            displayValue = addValue;
+            nextValue = [];
+            console.log(nextValue + '--plus else')
+            console.log(calculated)
+            console.log(displayValue + '--display')
+            return calculated = true;
+
+        }
+        
+        
     }
     if(sign === 'minus') {
         const minusValue = subtract(firstValue, secondValue);
@@ -35,12 +63,14 @@ function operate(sign) {
         output.textContent = `= ${divisionValue}`;
     }
 }
-
+let calculated = false;
 const plus = document.getElementById('plus');
     plus.addEventListener('click', () => {
         console.log('plus test')
         sign = plus.id;
         symbol = `+`;
+        console.log(secondValue + '--plus  test')
+        equals();
     })
 const minus = document.getElementById('minus');
     minus.addEventListener('click', () => {
@@ -89,9 +119,10 @@ let secondValue;
 function getNumberValues() {
     for(let num of numbers) {
         num.addEventListener('click', () => { 
-            if(operandClicked === true) {
+            if(operandClicked === true || calculated === true) {
                 nextValue.push(num.value);
                 getNewValue(num)
+                console.log(calculated + '--getnumbervalues')
             } else {
                 value.push(num.value);
                 getValue(num)
@@ -120,15 +151,24 @@ function getNewValue(num, x, y) {
 }
 
 const output = document.getElementById('display');
-let displayValue = '';
+
 
 function display(firstValue) {
-    displayValue = firstValue;
-    output.textContent = `${displayValue}`;
+    output.textContent = `${firstValue}`;
     console.log('--clear display test')
     getOperand(value)
 }
 let operandClicked = false;
+
+function equals() {
+    if(operandClicked === true) {
+        operate(sign);
+        console.log(displayValue + ' -- equals display value')
+        console.log(secondValue + ' -- equals second value')
+
+        console.log(calculated + ' -- equals calculated')
+    }
+}
 
 function getOperand(value) {
     console.log(value + '--test')
