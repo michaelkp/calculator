@@ -34,29 +34,25 @@ NUMBERS.forEach(num => {
     })
 })
 
-    const OPERANDS = document.querySelectorAll('.operand')
-    OPERANDS.forEach(operand => {
-        operand.addEventListener('click', () => {
-            
-            if(operated === true){
-                console.log(operated + '-- operated test')
-                console.log(sign + '-- operated sign test')
-
-                console.log(nextNum + '-- operated nextNum test')
-                console.log(prevNum + '-- operated prevNum test')
-                sign = operand.value
-                DISPLAY.textContent = `${currentNumber} ${sign}`
-                
-                operate(sign, prevNum, nextNum)
-            } else if(calculated === true){
-                sign = operand.value
-                console.log(currentNumber + 'currentNum' + sign + ' ' + calculated)
-                nextNum = ''
-                number = ''
-                values.length = 0
-                DISPLAY.textContent = `${currentNumber}`
-                
-                getNextNum(sign)
+const OPERANDS = document.querySelectorAll('.operand')
+OPERANDS.forEach(operand => {
+    operand.addEventListener('click', () => {
+        if(operated === true){
+            console.log(operated + '-- operated test')
+            console.log(sign + '-- operated sign test')
+            console.log(nextNum + '-- operated nextNum test')
+            console.log(prevNum + '-- operated prevNum test')
+            sign = operand.value
+            DISPLAY.textContent = `${currentNumber} ${sign}`
+            operate(sign, prevNum, nextNum)
+        } else if(calculated === true){
+            sign = operand.value
+            console.log(currentNumber + 'currentNum' + sign + ' ' + calculated)
+            nextNum = ''
+            number = ''
+            values.length = 0
+            DISPLAY.textContent = `${currentNumber}`
+            getNextNum(sign)
             } else {
                 sign = operand.value
                 signHasValue = true
@@ -66,12 +62,52 @@ NUMBERS.forEach(num => {
                 //getNumbers(prevNum, nextNum)
                 console.log(prevNum + '--getOperand prevNum test')
                 console.log(sign + '--getOperand sign test')
-                
                 getNextNum(sign)
             }
         })
     })
 
+const EQUAL = document.querySelector('#equals')
+EQUAL.addEventListener('click', () => {
+        DISPLAY.textContent = `${currentNumber} ${nextNum}`
+        operate(sign, prevNum, nextNum)
+        
+    })
+
+const CLEAR = document.querySelector('#clear')
+CLEAR.addEventListener('click', () => {
+    console.log(values + '--clear before test')
+    if(operated === true){
+        console.log(nextNum + '--clear nextNum test')
+        values.splice(-1)
+        number = values.join('')
+        number = parseFloat(number)
+        nextNum = number
+        DISPLAY.textContent = `${nextNum}`
+        return nextNum
+    } else {
+        console.log(prevNum + '--clear prevNum test')
+        values.splice(-1)
+        number = values.join('')
+        number = parseFloat(number)
+        prevNum = number
+        DISPLAY.textContent = `${prevNum}`
+        return prevNum
+    }
+})
+
+const ALL_CLEAR = document.querySelector('#ac')
+ALL_CLEAR.addEventListener('click', () => {
+    calculated = false
+    operated = false
+    signHasValue = false
+    values.length = 0
+    number = ''
+    prevNum = ''
+    nextNum = ''
+    currentNumber = ''
+    DISPLAY.textContent = 0
+})
 
 function getPrevNum() {
     console.log(number + '--getPrevNum number test')
@@ -99,22 +135,6 @@ function getNextNum() {
     console.log(nextNum + '--getNextNum nextNum test')
     //equals()
 }
-
-function equals() {
-    const EQUAL = document.querySelector('#equals')
-    EQUAL.addEventListener('click', () => {
-        //console.log('equals test')
-        //console.log(sign + '--sign equals test')
-
-        //console.log(prevNum + '--prevNum equals test')
-        //console.log(nextNum + '--nextNum equals test')
-        DISPLAY.textContent = `${currentNumber} ${nextNum}`
-        operate(sign, prevNum, nextNum)
-        
-    })
-    
-}
-equals(sign, prevNum, nextNum)
 
 function operate(sign, prevNum, nextNum) {
     console.log(sign + '--operate sign test')
