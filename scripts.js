@@ -13,8 +13,8 @@ function divide(a, b) {
 
 let values = []
 let sign = ''
-//let prevOp = ''
-//let nextOp = ''
+let prevOp = ''
+let nextOp = ''
 let number = ''
 let prevNum = ''
 let nextNum = ''
@@ -80,8 +80,44 @@ window.addEventListener('keydown', (e) => {
         return
     }
 })
+function getOperand(sign) {
+    console.log('----PREVOP---')
+    //console.log(prevOp + '--prevop')
+    signHasValue = true
+    values.length = 0
+    number = ''
+    prevOp = sign
+    console.log(prevOp + '--prevop')
 
+    DISPLAY.textContent = `${prevNum} ${sign}`
+    //getNumbers(prevNum, nextNum)
+    console.log(prevNum + '--getOperand prevNum test')
+    console.log(sign + '--getOperand sign test')
+    console.log(nextNum + '--nextnum')
+    getNextNum(prevOp)
+    if(nextNum !== '') {
+        getNextOperand(sign)
+    }
+}
 
+function getNextOperand(sign) {
+    console.log('----NEXTOP---')
+    console.log(prevOp + '--prevop')
+    signHasValue = true
+    values.length = 0
+    number = ''
+    prevOp = ''
+    nextOp = sign
+    console.log(nextOp + '--nextop')
+
+    DISPLAY.textContent = `${prevNum} ${sign}`
+    //getNumbers(prevNum, nextNum)
+    console.log(prevNum + '--getOperand prevNum test')
+    console.log(sign + '--getOperand sign test')
+
+    getNextNum(nextOp)
+}
+/*
 function getOperand(sign) {
         if(operated === true){
             console.log('------ operated is true-------')
@@ -103,7 +139,7 @@ function getOperand(sign) {
             number = ''
             values.length = 0
             DISPLAY.textContent = `${currentNumber}`
-
+            //equals()
             getNextNum(sign)
             } else {
                 //sign = operand.value
@@ -121,7 +157,7 @@ function getOperand(sign) {
             }
         
 }
-
+*/
 const EQUAL = document.querySelector('#equals')
 EQUAL.addEventListener('click', equals)
 window.addEventListener('keydown', (e) => {
@@ -220,16 +256,42 @@ function getNextNum() {
     //operated = true
     nextNum = number
     DISPLAY.textContent = `${sign} ${nextNum}`
+    if(prevOp !== '' && nextNum !== '') {
+        console.log('---NEXTNUM NEXTOP---')
+        console.log(nextOp + '-- nextop')
+        DISPLAY.textContent = `${nextOp} ${nextNum}`
+
+        operate(nextOp, prevNum, nextNum)
+        return 
+    } else if(nextNum !== '' && nextOp !== '') {
+        console.log('---NEXTNUM PREVOP---')
+        console.log(prevOp + '-- prevop')
+        DISPLAY.textContent = `${prevOp} ${nextNum}`
+
+        operate(prevOp, prevNum, nextNum)
+        //prevOp = ''
+        return 
+    }/*
+    if(nextOp !== '' && prevOp === '') {
+        console.log('---NEXTNUM NEXTOP---')
+        console.log(nextOp + '-- nextop')
+
+        operate()
+        return
+    }*/
     //console.log(nextNum + '--getNextNum nextNum test')
     //equals()
 }
 
-function operate(sign, prevNum, nextNum) {
+function operate() {
     //console.log(sign + '--operate sign test')
-    //console.log(prevNum + '--prevNum operate test')
-    //console.log(nextNum + '--nextNum operate test')
+    console.log(prevOp + '--prevop operate test')
+    console.log(nextOp + '--nextop operate test')
+    console.log(prevNum + '--prevnum operate test')
+    console.log(nextNum + '--nextnum operate test')
 
-    if(sign === '+') {
+
+    if(prevOp === '+' || nextOp === '+') {
         if(calculated === true){
             currentNumber = add(currentNumber, nextNum)
             nextNum = ''
@@ -263,7 +325,7 @@ function operate(sign, prevNum, nextNum) {
 
         }
     }
-    if(sign === '-') {
+    if(prevOp === '-' || nextOp === '-') {
         if(calculated === true){
             console.log('----vv sub if test vv------')
             console.log(sign + '-- sign test')
@@ -297,7 +359,7 @@ function operate(sign, prevNum, nextNum) {
 
         }   
      }
-    if(sign === '*') {
+    if(prevOp === '*' || nextOp === '*') {
         if(calculated === true){
             console.log('----vv mult if test vv------')
             console.log(sign + '-- sign test')
@@ -337,7 +399,7 @@ function operate(sign, prevNum, nextNum) {
         DISPLAY.textContent = 'ERROR'
         return
     }
-    if(sign === '/') {
+    if(prevOp === '/' || nextOp === '/') {
         
         if(calculated === true){
             console.log('----vv div if test vv------')
