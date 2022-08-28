@@ -61,7 +61,7 @@ function getNumbers(num) {
 const OPERANDS = document.querySelectorAll('.operand')
 OPERANDS.forEach(operand => {
     operand.addEventListener('click', () => {
-        prevOp = operand.value
+        sign = operand.value
         getOperand(sign)
         //getFirstOp(sign)
 
@@ -80,19 +80,7 @@ window.addEventListener('keydown', (e) => {
         return
     }
 })
-/*
-let firstOp = ''
-function getFirstOp(sign) {
-    console.log('---------vv getFirstOp vv----------')
-    console.log(sign + '--sign test')
-    DISPLAY.textContent = `${sign}`
-    operate(sign, prevNum, nextNum)
-}
-let nextOp = ''
-function getNextOp(sign) {
 
-}
-*/
 
 function getOperand(sign) {
         if(operated === true){
@@ -102,7 +90,6 @@ function getOperand(sign) {
             console.log(sign + '-- operated sign test')
             console.log(nextNum + '-- operated nextNum test')
             console.log(prevNum + '-- operated prevNum test')
-            nextOp = sign
             currentNumber = DISPLAY.textContent
             console.log(currentNumber + '--currentNUmber')
             //DISPLAY.textContent = `${currentNumber} ${sign}`
@@ -111,7 +98,6 @@ function getOperand(sign) {
         } else if(calculated === true){
             console.log('------ calculated is true -------')
             console.log(calculated + '-- calculated test')
-            nextOp = sign
             console.log(currentNumber + 'currentNum' + sign + ' ' + calculated)
             nextNum = ''
             number = ''
@@ -257,7 +243,6 @@ function operate(sign, prevNum, nextNum) {
 
 
             DISPLAY.textContent = `${currentNumber}`
-            getOperand()
         } else {
             //console.log(prevNum + '--add prevNum test')
             //console.log(nextNum + '--add nextNum test')
@@ -275,7 +260,6 @@ function operate(sign, prevNum, nextNum) {
 
             values.length = 0
             //return prevNum
-            getOperand()
 
         }
     }
@@ -292,7 +276,6 @@ function operate(sign, prevNum, nextNum) {
            // console.log(calculated + '--calculated sub test')
 
             DISPLAY.textContent = `${currentNumber}`
-            getOperand()
 
         } else {
            // console.log(prevNum + '--sub prevNum test')
@@ -311,7 +294,6 @@ function operate(sign, prevNum, nextNum) {
 
             values.length = 0
             //return prevNum
-            getOperand()
 
         }   
      }
@@ -328,7 +310,6 @@ function operate(sign, prevNum, nextNum) {
             //console.log(calculated + '--calculated mult test')
 
             DISPLAY.textContent = `${currentNumber}`
-            getOperand()
 
         } else {
             //console.log(sign + '-- mult sign test')
@@ -348,7 +329,6 @@ function operate(sign, prevNum, nextNum) {
 
             values.length = 0
             //return prevNum
-            getOperand()
 
         }    
     }
@@ -371,7 +351,6 @@ function operate(sign, prevNum, nextNum) {
             //console.log(calculated + '--calculated div test')
 
             DISPLAY.textContent = `${currentNumber}`
-            getOperand()
 
         } else {
             //console.log(sign + '-- div sign test')
@@ -391,7 +370,6 @@ function operate(sign, prevNum, nextNum) {
 
             values.length = 0
             //return prevNum
-            getOperand()
 
         }    
     }
