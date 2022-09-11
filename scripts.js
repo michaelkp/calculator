@@ -112,49 +112,93 @@ const EQUALS_BTN = document.querySelector('#equals')
 EQUALS_BTN.addEventListener('click', () => {
     operate()
 })
+
+let calculated = false
+let result
 function operate() {
    // console.log(operand + '--operand in operate')
     //console.log(firstNumber + '--firstNumber in operate')
     //console.log(nextNumber + '--nextNumber in operate')
-    if(operand === '+') {
-        console.log('add test')
+    //
+ 
+    if(operand === '+' && calculated === true) {
+        console.log(calculated + '--calculated value')
+        
+            console.log('kjnknkjnkjnkjnkj')
+            console.log(operand + '--operand in operate')
+            console.log(firstNumber + '--firstNumber in operate')
+            console.log(nextNumber + '--nextNumber in operate')
+            console.log(result + '--nextNumber in operate')
+            operandHasValue = false
+            operand = ''
+            result  = (ADD(result, nextNumber))
+            console.log(result + '--add if statement result')
+            //display(result)
+        } else if (operand === '+' && calculated === false) {
+            console.log('add test')
             result  = (ADD(firstNumber, nextNumber))
             console.log(result + '--add result')
 
             operandHasValue = false
+            calculated = true
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean add result')
-            
-    }
-    if(operand === '-') {
+            console.log(calculated + '--calculated value')
+
+            //display(result)
+        }  
+    
+    if(operand === '-' && calculated === true) {
         console.log('add test')
-            result  = (SUBTRACT(firstNumber, nextNumber))
+            result  = (SUBTRACT(result, nextNumber))
             console.log(result + '--subtract result')
 
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean sub result')
+    } else if(operand === '-' && calculated === false) {
+            result  = (SUBTRACT(firstNumber, nextNumber))
+            console.log(result + '--add result')
+
+            operandHasValue = false
+            calculated = true
+            operand = ''
     }
-    if(operand === '*') {
+    if(operand === '*' && calculated === true) {
         console.log('add test')
-            result  = (MULTIPLY(firstNumber, nextNumber))
+            result  = (MULTIPLY(result, nextNumber))
             console.log(result + '--multiply result')
 
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean mult result')
+    }  else if(operand === '*' && calculated === false) {
+        result  = (MULTIPLY(firstNumber, nextNumber))
+        console.log(result + '--add result')
+
+        operandHasValue = false
+        calculated = true
+        operand = ''
     }
-    if(operand === '/') {
+    if(operand === '/' && calculated === true) {
         console.log('add test')
-            result  = (DIVIDE(firstNumber, nextNumber))
+            result  = (DIVIDE(result, nextNumber))
                         console.log(result + '--divide result')
 
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean divide result')
 
+    }  else if(operand === '/' && calculated === false) {
+        result  = (DIVIDE(firstNumber, nextNumber))
+        console.log(result + '--add result')
+
+        operandHasValue = false
+        calculated = true
+        operand = ''
     }
     console.log(result + '--result operate')
+    //return result
     display(result)
     
 }
