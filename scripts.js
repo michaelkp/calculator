@@ -43,10 +43,10 @@ function convertInputIntoNumbers(numbersValue) {
         console.log(newNumbers)
         currentNumber = newNumbers
     
-     return getNumbers(currentNumber);
+     return getNextNumbers(currentNumber);
 }
 
-function getNumbers(currentNumber) {
+function getNextNumbers(currentNumber) {
     console.log(currentNumber + '--getnumbers')
     if(firstNumber !== '') {
         console.log(firstNumber + '--firstnumber in getNumbers')
