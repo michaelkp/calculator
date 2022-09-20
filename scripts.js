@@ -18,6 +18,7 @@ let nextNumber = '' //next number to be calculated
 let displayText;
 let operand = '';
 
+
 function display(displayText) {
     const DISPLAY = document.querySelector('#display');
     DISPLAY.textContent = `${displayText}`;
@@ -62,9 +63,14 @@ function getNextNumbers(currentNumber) {
 const OPERATORS = document.querySelectorAll('.operand');
       OPERATORS.forEach((operator) =>  {
         operator.addEventListener('click', () => {
-            operand = operator.value
-            console.log(operand + '--operand button')
-            getOperand(operand);
+            if(operand !== ''){
+                newOperand = operator.value
+                operate(operand)
+            } else {
+                operand = operator.value
+                console.log(operand + '--operand button')
+                getOperand(operand);
+            }
         })
       });
 let newOperand
@@ -76,13 +82,15 @@ const OPERATORS_KEYS = window.addEventListener('keydown', (operator) => {
 
             console.log(newOperand + '----new operand-----')
             console.log(operand + ' --old operand')
-            console.log(operate(operand) + ' --operate on old operand')
-
-            getOperand(newOperand)
-            console.log(operate(operand) + ' --operate on old operand')
+            operate(operand)
+            //console.log(display(result) + '--display result')
+            //getOperand(newOperand)
+            //console.log(display(result) + ' --result on old operand')
+        } else {
+            operand = operator.key
+            getOperand(operand);
         }
-        operand = operator.key
-        getOperand(operand);
+        
     } 
     if (!operandArray.includes(operator.key)) return console.log('error')
     
@@ -143,7 +151,7 @@ function operate() {
             operand = ''
             result  = (ADD(result, nextNumber))
             console.log(result + '--add if statement result')
-            //display(result)
+            clearValues()
         } else if (operand === '+' && calculated === false) {
             console.log('add test')
             result  = (ADD(firstNumber, nextNumber))
@@ -154,8 +162,7 @@ function operate() {
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean add result')
             console.log(calculated + '--calculated value')
-
-            //display(result)
+            clearValues()
         }  
     
     if(operand === '-' && calculated === true) {
@@ -166,6 +173,7 @@ function operate() {
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean sub result')
+            clearValues()
     } else if(operand === '-' && calculated === false) {
             result  = (SUBTRACT(firstNumber, nextNumber))
             console.log(result + '--add result')
@@ -173,6 +181,7 @@ function operate() {
             operandHasValue = false
             calculated = true
             operand = ''
+            clearValues()
     }
     if(operand === '*' && calculated === true) {
         console.log('add test')
@@ -182,6 +191,7 @@ function operate() {
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean mult result')
+            clearValues()
     }  else if(operand === '*' && calculated === false) {
         result  = (MULTIPLY(firstNumber, nextNumber))
         console.log(result + '--add result')
@@ -189,6 +199,7 @@ function operate() {
         operandHasValue = false
         calculated = true
         operand = ''
+        clearValues()
     }
     if(operand === '/' && calculated === true) {
         console.log('add test')
@@ -198,6 +209,7 @@ function operate() {
             operandHasValue = false
             operand = ''
             console.log(operand + '--operand ' + operandHasValue + '--boolean divide result')
+            clearValues()
 
     }  else if(operand === '/' && calculated === false) {
         result  = (DIVIDE(firstNumber, nextNumber))
@@ -206,12 +218,22 @@ function operate() {
         operandHasValue = false
         calculated = true
         operand = ''
+        clearValues()
     }
     console.log(result + '--result operate')
     //return result
     display(result)
     
 }
+
+function clearValues() {
+    console.log('----clear values ---')
+    numbers.length = 0
+    firstNumber = ''
+    nextNumber = ''
+    operand = ''
+    newOperand = ''
+ }
 
 const CLEAR = document.querySelector('#clear');
 CLEAR.addEventListener('click', clearNumber(numbers));
