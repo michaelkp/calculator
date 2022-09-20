@@ -16,7 +16,7 @@ let numbersValue //values to populate numbers array
 let firstNumber = '' //previous number
 let nextNumber = '' //next number to be calculated
 let displayText;
-//let operand;
+let operand = '';
 
 function display(displayText) {
     const DISPLAY = document.querySelector('#display');
@@ -67,10 +67,20 @@ const OPERATORS = document.querySelectorAll('.operand');
             getOperand(operand);
         })
       });
-
+let newOperand
 const OPERATORS_KEYS = window.addEventListener('keydown', (operator) => {
     let operandArray = ['+', '-', '*', '/'];
     if (operandArray.includes(operator.key)) {
+        if(operand !== '') {
+            newOperand = operator.key
+
+            console.log(newOperand + '----new operand-----')
+            console.log(operand + ' --old operand')
+            console.log(operate(operand) + ' --operate on old operand')
+
+            getOperand(newOperand)
+            console.log(operate(operand) + ' --operate on old operand')
+        }
         operand = operator.key
         getOperand(operand);
     } 
@@ -79,9 +89,9 @@ const OPERATORS_KEYS = window.addEventListener('keydown', (operator) => {
 })
 let operandHasValue = false
 
-function getOperand(operand) {
+function getOperand() {
     
-        operandHasValue = true
+        //operandHasValue = true
         if(currentNumber !== '') {
             firstNumber = currentNumber
             currentNumber = ''
