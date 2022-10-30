@@ -15,35 +15,46 @@
         <header>
             <h1>Calculator</h1> 
         </header>
+
         <main>
             <section class="calculator">
-                <header class="calc-header">
-                    <output id="display">0</output>
+                <header class="calculatorHeader">
+                    <span id="display">
+                        <p id="displayText"></p>
+                    </span>
                 </header>
-                <button type="submit" class="number" id="num0" value="0">0</button>
-                <button type="submit" class="number" id="num1" value="1">1</button>
-                <button type="submit" class="number" id="num2" value="2">2</button>
-                <button type="submit" class="number" id="num3" value="3">3</button>
-                <button type="submit" class="number" id="num4" value="4">4</button>
-                <button type="submit" class="number" id="num5" value="5">5</button>
-                <button type="submit" class="number" id="num6" value="6">6</button>
-                <button type="submit" class="number" id="num7" value="7">7</button>
-                <button type="submit" class="number" id="num8" value="8">8</button>
-                <button type="submit" class="number" id="num9" value="9">9</button>
-                <button type="submit" class="operand" id="plus" value="+">+</button>
-                <button type="submit" class="operand" id="minus" value="-">-</button>
-                <button type="submit" class="operand" id="divide" value="/">/</button>
-                <button type="submit" class="operand" id="multiply" value="*">*</button>
-                <button type="submit" class="number" id="dot" value=".">.</button>
-                <button type="submit" id="equals" value="=">Equals</button>
-                <button type="submit" id="clear" value="clear">Clear</button>
-                <button type="submit" id="ac" value="ac">AC</button>
                 
+                <button type="submit" id="backspace" value="backspace"><</button>
+                <button type="submit" id="allClear" value="allClear">AC</button>
+                
+                <button type="submit" class="number" id="num9" value="9">9</button>
+                <button type="submit" class="number" id="num8" value="8">8</button>
+                <button type="submit" class="number" id="num7" value="7">7</button>
 
+                <button type="submit" class="operand" id="divide" value="/">/</button>
+
+                <button type="submit" class="number" id="num6" value="6">6</button>
+                <button type="submit" class="number" id="num5" value="5">5</button>
+                <button type="submit" class="number" id="num4" value="4">4</button>
+
+                <button type="submit" class="operand" id="multiply" value="*">*</button>
+
+                <button type="submit" class="number" id="num3" value="3">3</button>
+                <button type="submit" class="number" id="num2" value="2">2</button>
+                <button type="submit" class="number" id="num1" value="1">1</button>
+                
+                <button type="submit" class="operand" id="minus" value="-">-</button>
+                
+                <button type="submit" class="number" id="dot" value=".">.</button>
+                <button type="submit" class="number" id="num0" value="0">0</button>
+                <button type="submit" id="equals" value="=">=</button>
+                <button type="submit" class="operand" id="plus" value="+">+</button>
+                
+                          
             </section>
         </main>
         <footer>
-            <p>Made for The Odin Project</p>
+            <p>Made by Michael for <a href="https://www.theodinproject.com/lessons/foundations-calculator">The Odin Project</a></p>
         </footer>
 </body>
 </html>
